@@ -31,14 +31,14 @@ const ws = new WebSocket('ws://localhost:8126/foo');
 sendMeasageToServer = () =>{
   const measage = measageInput.value;
   if (measage!== ""){
-    const json = '{"username": "TY", "message" : "idk"}'
+    const json = '{"username": "'+username+'", "message" : "'+measage+'"}'
     ws.send(json);
   }
   
 } 
 
 signIn = () => {
-  unsername = usernameInput.value;
+  username = usernameInput.value;
   messageBox.classList.toggle('invisible');
   
 }

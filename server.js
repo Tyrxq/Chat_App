@@ -27,7 +27,7 @@ wss.on('connection', (user) =>{
     users.saveUser(message.username,user);
     console.log("<"+ message.username +">"+ message.message);
     //console.log(message)
-
+    users.usersOnline[message.username].send(`<${message.username}>${message.message}`);
   
   });
 });
