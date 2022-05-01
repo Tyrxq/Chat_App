@@ -10,17 +10,29 @@
         <link rel="stylesheet" href="client.css">
     </head>
     <header>
-        <h1>Test</h1>
+        <h1>Chat-App</h1>
     </header>
     <body>
-        <section id = MessageBox>
-            <label>Message:</label> 
-            <input type = "text" id = "input">
-            <button>Send</button>
-            <br>
-            <br>
-            <br>
-            <div id="div1"></div>
+        </div>
+        <section>
+            <div id = 'interface'>
+                <label>Username </label>
+                <input type = "text" id = "username">
+                <button id = login-btn>Sign in</button>
+                <div class = 'message-box invisible' >
+                    <label>Message:</label> 
+                    <input type = "text" id = "input">
+                    <button id = message-btn>Send</button>
+                    <br>
+                    <br>
+                    <br>
+                    <div class = 'messages'>
+                        <div class = 'Message'>
+                            <div id="div1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </body>
 </html>

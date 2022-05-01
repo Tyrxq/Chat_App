@@ -34,7 +34,7 @@ button:active{
 #socket{
     text-align: center;
 }
-#MessageBox {
+section {
     margin: 2rem auto;
     width: 20rem;
     max-width: 90%;
@@ -42,7 +42,7 @@ button:active{
     border-radius: 10px;
     padding: 5rem;
     color: #023d6d;
-    
+    height:80px;
   }
 label{
   color: white;
@@ -56,10 +56,21 @@ h2{
 h3{
     color: white; 
 }
-.visible{
+.invisible{
     display:none;
 }
 h1 {
     position:relative;
     bottom:30px;
+}
+.messages {
+    position:relative;
+    overflow-y: scroll;
+    background-color: white;
+    height: 100px;
+    bottom: 30px;
+}
+#interface{
+    position: relative;
+    bottom: 30px;
 }
