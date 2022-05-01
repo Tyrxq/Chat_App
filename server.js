@@ -24,11 +24,23 @@ const wss = new WebSocketServer({server: server, path: '/foo'});
 wss.on('connection', (user) =>{
   user.on('message', (json) =>{
     const message = JSON.parse(json);
-    users.saveUser(message.username,user);
-    console.log("<"+ message.username +">"+ message.message);
-    //console.log(message)
-    users.usersOnline[message.username].send(`<${message.username}>${message.message}`);
-  
+    if(message.message === "Client connected hjidfhngbfhbujik;gafgbwsgvhjnkl/sdbgvbksvhu"){
+      users.saveUser(message.username,user);
+      console.log(message.username+ " has connected");
+    }
+    else{
+      console.log("<"+ message.username +">"+ message.message +`(sent to ${message.receiver})`);
+      //console.log(message)
+      users.usersOnline[message.username].send(`<${message.username}>${message.message}`);
+      if (users.usersOnline[message.receiver] === undefined){
+        users.usersOnline[message.username].send(`${message.receiver} is Offline`);
+      }
+      else{
+        users.usersOnline[message.receiver].send(`<${message.username}>${message.message}`);
+      }
+    
+    }
+    
   });
 });
 server.listen(8126);

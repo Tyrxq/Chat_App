@@ -18,7 +18,8 @@ const messages = document.querySelector(".messages")
 const measageInput = document.querySelector("#input");
 const loginBtn = document.querySelector("#login-btn");
 const usernameInput = document.querySelector("#username");
-const messageBox = document.querySelector(".message-box")
+const messageBox = document.querySelector(".message-box");
+const receiverInput = document.querySelector("#receiver-input");
 
 let username;
 
@@ -30,8 +31,9 @@ const ws = new WebSocket('ws://localhost:8126/foo');
 //This function grabs the input from the messageInput and sends the input to the server.
 sendMeasageToServer = () =>{
   const measage = measageInput.value;
-  if (measage!== ""){
-    const json = '{"username": "'+username+'", "message" : "'+measage+'"}'
+  const receiver = receiverInput.value;
+  if (measage!== "" ){
+    const json = '{"username": "'+username+'", "receiver": "'+receiver+'","message" : "'+measage+'"}'
     ws.send(json);
   }
   
@@ -40,6 +42,8 @@ sendMeasageToServer = () =>{
 signIn = () => {
   username = usernameInput.value;
   messageBox.classList.toggle('invisible');
+  const json = '{"username": "'+username+'","message" : "Client connected hjidfhngbfhbujik;gafgbwsgvhjnkl/sdbgvbksvhu"}'
+  ws.send(json);
   
 }
 
