@@ -20,6 +20,8 @@ const loginBtn = document.querySelector("#login-btn");
 const usernameInput = document.querySelector("#username");
 const messageBox = document.querySelector(".message-box")
 
+let username;
+
 //This creates a websocket object that will connect to my local computer ip address on port 8126 and on path foo. 
 const ws = new WebSocket('ws://localhost:8126/foo');
 
@@ -28,12 +30,15 @@ const ws = new WebSocket('ws://localhost:8126/foo');
 //This function grabs the input from the messageInput and sends the input to the server.
 sendMeasageToServer = () =>{
   const measage = measageInput.value;
-  if (measage!== "")
-  ws.send(measage);
+  if (measage!== ""){
+    const json = '{"username": "TY", "message" : "idk"}'
+    ws.send(json);
+  }
+  
 } 
 
 signIn = () => {
-  const unsername = usernameInput.value;
+  unsername = usernameInput.value;
   messageBox.classList.toggle('invisible');
   
 }

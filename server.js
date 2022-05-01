@@ -7,17 +7,28 @@ Clients means website/app etc
 const WebSocketServer = require('ws').Server;
 const http = require('http');
 
+class Users {
+  constructor() {
+    this.usersOnline = {};
+    this.saveUser = this.saveUser.bind(this);
+  }
+  saveUser(username, user){
+    this.usersOnline[username] = user;
+  }
+}
 
+
+const users = new Users();
 const server = http.createServer();
 const wss = new WebSocketServer({server: server, path: '/foo'});
-wss.on('connection', function connection(ws) {
-  ws.on('message', function message(data) {
-    wss.clients.forEach(function each(client) {
-      //if (client.readyState === WebSocket.OPEN) {
-        console.log(data.toString('utf8'));
-        client.send(data.toString('utf8'));
-      //}
-    });
+wss.on('connection', (user) =>{
+  user.on('message', (json) =>{
+    const message = JSON.parse(json);
+    users.saveUser(message.username,user);
+    console.log("<"+ message.username +">"+ message.message);
+    //console.log(message)
+
+  
   });
 });
 server.listen(8126);
